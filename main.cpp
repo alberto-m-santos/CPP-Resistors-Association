@@ -5,6 +5,7 @@ using namespace std;
 
 float Resistencias[12] = {100,200,330,470,680,1000,2000,3300,4700,6800,33000,100000};
 float ImpedanciasPossiveis[500000]={100,200,330,470,680,1000,2000,3300,4700,6800,33000,100000};
+//float Esquematico[500000][100];
 int Combinacoes = 0;
 
 /* Inicializacao das funcoes */
@@ -20,6 +21,7 @@ void ZeroParaleloQuatroSerie();
 float ResEquivParalelo(float res1, float res2, float res3, float res4);
 float ResEquivSerie(float res1, float res2, float res3, float res4);
 void ImprimeImpedanciasPossiveis();
+//void ImprimeEsquematicosPossiveis();
 
 /* Troca dois elementos num array */
 void swap(float *xp, float *yp)
@@ -106,6 +108,7 @@ void QuatroParaleloZeroSerie()
                 for(int l=0; l<12; l++)
                 {
                     ImpedanciasPossiveis[Combinacoes] = ResEquivParalelo(Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
+                    //sprintf(Esquematico[Combinacoes], "(|| %f || %f || %f || %f ||)", Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
                     Combinacoes++;
                 }
             }
@@ -127,6 +130,7 @@ void TresParaleloUmSerie()
                 {
                     res = ResEquivParalelo(Resistencias[i], Resistencias[j], Resistencias[k], INFINITY);
                     ImpedanciasPossiveis[Combinacoes] = ResEquivSerie(res, Resistencias[l], 0, 0);
+                    //sprintf(Esquematico[Combinacoes], "(|| %1.f || %1.f || %1.f || - %1.f)",Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
                     Combinacoes++;
                 }
             }
@@ -148,6 +152,7 @@ void DoisParaleloDoisSerie()
                 {
                     res = ResEquivParalelo(Resistencias[i], Resistencias[j], INFINITY, INFINITY);
                     ImpedanciasPossiveis[Combinacoes] = ResEquivSerie(res, Resistencias[k], Resistencias[l], 0);
+                    //sprintf(Esquematico[Combinacoes], "(|| %1.f || %1.f || %1.f - %1.f)",Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
                     Combinacoes++;
                 }
             }
@@ -169,6 +174,7 @@ void UmParaleloTresSerie()
                 {
                     res = ResEquivSerie(Resistencias[i], Resistencias[j], Resistencias[k], 0);
                     ImpedanciasPossiveis[Combinacoes] = ResEquivParalelo(res, Resistencias[l], INFINITY, INFINITY);
+                    //sprintf(Esquematico[Combinacoes], "(|| %1.f || %1.f - %1.f - %1.f)",Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
                     Combinacoes++;
                 }
             }
@@ -188,6 +194,7 @@ void ZeroParaleloQuatroSerie()
                 for(int l=0; l<12; l++)
                 {
                     ImpedanciasPossiveis[Combinacoes] = ResEquivSerie(Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
+                    //sprintf(Esquematico[Combinacoes], "(%1.f - %1.f - %1.f - %1.f)",Resistencias[i], Resistencias[j], Resistencias[k], Resistencias[l]);
                     Combinacoes++;
                 }
             }
@@ -218,6 +225,14 @@ void ImprimeImpedanciasPossiveis()
         printf("%.1f ", ImpedanciasPossiveis[i]);
     }
 }
+
+//void ImprimeEsquematicosPossiveis()
+//{
+//    for(int i=0; i<Combinacoes; i++)
+//    {
+//        printf("\n%s ", Esquematico[i]);
+//    }
+//}
 
 int main()
 {
