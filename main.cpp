@@ -262,7 +262,7 @@ int main()
     sort(ImpedanciasPossiveis.begin(), ImpedanciasPossiveis.end());
     ImpedanciasPossiveis.erase(unique(ImpedanciasPossiveis.begin(), ImpedanciasPossiveis.end()), ImpedanciasPossiveis.end());
     //RemoverElementosDuplicados(ImpedanciasPossiveis, Combinacoes);
-    RemoverElementosSimilares(ImpedanciasPossiveis, Combinacoes);
+    //RemoverElementosSimilares(ImpedanciasPossiveis, Combinacoes);
 
     float imp, tol;
     int i;
