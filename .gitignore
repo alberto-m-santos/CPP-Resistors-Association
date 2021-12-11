@@ -1,0 +1,5 @@
+.bin/Debug
+.obj.Debug
+.ResistorsCpp.cbp
+.ResistorsCpp.depend
+.ResistorsCpp.layout
